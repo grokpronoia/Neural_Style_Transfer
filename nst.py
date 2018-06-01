@@ -9,7 +9,7 @@ import numpy as np
 import tensorflow as tf
 
 # Load the pre-trained VGG-19 model
-# model = load_vgg_model("pretrained-model/imagenet-vgg-verydeep-19.mat")
+# model = sio.loadmat('/Users/marrowgari/pretrained-model/imagenet-vgg-verydeep-19.mat')
 # print(model)
 
 '''
@@ -19,7 +19,7 @@ Put it together to get  J(G)=αJcontent(C,G)+βJstyle(S,G)J(G)=αJcontent(C,G)+�
 '''
 
 #Sample content image
-content_image = scipy.misc.imread("/Users/marrowgari/Documents/HappyClouds/mars.jpg")
+content_image = scipy.misc.imread("/Users/marrowgari/Documents/HappyClouds/Machine-Learning/refugee.jpg")
 imshow(content_image)
 
 # Steps for computing content cost
@@ -62,7 +62,7 @@ with tf.Session() as test:
     print("J_content = " + str(J_content.eval()))
 
 #Sample style image
-style_image = scipy.misc.imread("/Users/marrowgari/Documents/HappyClouds/kadinsky.jpg")
+style_image = scipy.misc.imread("/Users/marrowgari/Documents/HappyClouds/Machine-Learning/murakami.jpg")
 imshow(style_image)
 
 # Compute Style matrix / Gram matrix
@@ -228,11 +228,11 @@ tf.reset_default_graph()
 sess = tf.InteractiveSession()
 
 # load, reshape, and normalize "content" image
-content_image = scipy.misc.imread("/Users/marrowgari/Documents/HappyClouds/mars.jpg")
+content_image = scipy.misc.imread("/Users/marrowgari/Documents/HappyClouds/Machine-Learning/refugee.jpg")
 content_image = reshape_and_normalize_image(content_image)
 
 # load, reshape, and normalize "style" image
-style_image = scipy.misc.imread("/Users/marrowgari/Documents/HappyClouds/kadinsky.jpg")
+style_image = scipy.misc.imread("/Users/marrowgari/Documents/HappyClouds/Machine-Learning/murakami.jpg")
 style_image = reshape_and_normalize_image(style_image)
 
 # Initialize generated image as noisy image created from content image
@@ -240,7 +240,7 @@ generated_image = generate_noise_image(content_image)
 imshow(generated_image[0])
 
 # load the VGG16 model
-model = load_vgg_model("pretrained-model/imagenet-vgg-verydeep-19.mat")
+model = sio.loadmat('/Users/marrowgari/pretrained-model/imagenet-vgg-verydeep-19.mat')
 
 #to compute the content cost using layer conv4_2, assign a_C and a_G to be the appropriate hidden layer activations.
 '''
